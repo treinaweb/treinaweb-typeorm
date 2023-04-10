@@ -1,19 +1,30 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Endereco } from 'src/enderecos/entities/endereco.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Usuario {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column()
+  @Column({ nullable: false })
   nome: string;
 
-  @Column()
+  @Column({ nullable: false })
   email: string;
 
-  @Column()
+  @Column({ nullable: false })
   password: string;
 
-  @Column()
-  cep: string;
+  @OneToOne(() => Endereco, (endereco) => endereco.usuario, {
+    eager: true,
+    cascade: true,
+  })
+  @JoinColumn({ name: 'endereco_id' })
+  endereco: Endereco;
 }
