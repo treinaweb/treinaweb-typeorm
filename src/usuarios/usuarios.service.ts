@@ -14,12 +14,12 @@ export class UsuariosService {
     return await this.repository.save(createUsuarioDto);
   }
 
-  findAll() {
-    return `This action returns all usuarios`;
+  async findAll() {
+    return await this.repository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} usuario`;
+  async findOne(id: number) {
+    return await this.repository.findOneBy({ id: id });
   }
 
   update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
