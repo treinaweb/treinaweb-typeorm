@@ -1,8 +1,10 @@
 import { Endereco } from 'src/enderecos/entities/endereco.entity';
+import { Foto } from 'src/fotos/entities/foto.entity';
 import {
   Column,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -27,4 +29,7 @@ export class Usuario {
   })
   @JoinColumn({ name: 'endereco_id' })
   endereco: Endereco;
+
+  @OneToMany(() => Foto, (foto) => foto.usuario)
+  foto: Foto;
 }

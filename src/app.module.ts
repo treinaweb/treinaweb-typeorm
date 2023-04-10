@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { join } from 'path';
 import { EnderecosModule } from './enderecos/enderecos.module';
+import { FotosModule } from './fotos/fotos.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { EnderecosModule } from './enderecos/enderecos.module';
     }),
     UsuariosModule,
     EnderecosModule,
+    FotosModule,
   ],
   controllers: [AppController],
   providers: [AppService],
