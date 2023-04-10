@@ -22,8 +22,8 @@ export class UsuariosService {
     return await this.repository.findOneBy({ id: id });
   }
 
-  update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
-    return `This action updates a #${id} usuario`;
+  async update(id: number, updateUsuarioDto: UpdateUsuarioDto) {
+    return await this.repository.update(id, updateUsuarioDto);
   }
 
   remove(id: number) {
