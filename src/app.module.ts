@@ -6,6 +6,8 @@ import { UsuariosModule } from './usuarios/usuarios.module';
 import { join } from 'path';
 import { EnderecosModule } from './enderecos/enderecos.module';
 import { FotosModule } from './fotos/fotos.module';
+import { EventosModule } from './eventos/eventos.module';
+import { AtendimentosModule } from './atendimentos/atendimentos.module';
 
 @Module({
   imports: [
@@ -17,11 +19,13 @@ import { FotosModule } from './fotos/fotos.module';
       password: 'treinaweb',
       database: 'typeorm-bd',
       entities: [join(__dirname, '**/*entity.{ts,js}')],
-      synchronize: true,
+      synchronize: false,
     }),
     UsuariosModule,
     EnderecosModule,
     FotosModule,
+    EventosModule,
+    AtendimentosModule,
   ],
   controllers: [AppController],
   providers: [AppService],

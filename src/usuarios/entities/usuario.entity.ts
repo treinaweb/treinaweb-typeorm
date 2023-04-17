@@ -1,9 +1,11 @@
 import { Endereco } from 'src/enderecos/entities/endereco.entity';
+import { Evento } from 'src/eventos/entities/evento.entity';
 import { Foto } from 'src/fotos/entities/foto.entity';
 import {
   Column,
   Entity,
   JoinColumn,
+  ManyToMany,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -32,4 +34,7 @@ export class Usuario {
 
   @OneToMany(() => Foto, (foto) => foto.usuario)
   foto: Foto;
+
+  @ManyToMany(() => Evento, (evento) => evento.usuarios)
+  eventos: Evento[];
 }

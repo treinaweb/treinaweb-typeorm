@@ -11,11 +11,28 @@ export class UsuariosService {
     @InjectRepository(Usuario) private repository: Repository<Usuario>,
   ) {}
   async create(createUsuarioDto: CreateUsuarioDto) {
-    return await this.repository.save(createUsuarioDto);
+    return await this.repository
+      .createQueryBuilder()
+      .insert()
+      .into(Usuario)
+      .values([
+        {
+          nome: createUsuarioDto.nome,
+          email: createUsuarioDto.email,
+          password: createUsuarioDto.password,
+        },
+      ])
+      .execute();
   }
 
   async findAll() {
-    return await this.repository.find();
+    const usuariosComEndereco = await this.repository
+      .createQueryBuilder()
+      .select('usuarios')
+      .from(Usuario, 'usuarios')
+      .orderBy('usuarios.id', 'DESC')
+      .getRawOne();
+    return usuariosComEndereco;
   }
 
   async findOne(id: number) {
